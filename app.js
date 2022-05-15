@@ -42,5 +42,5 @@ app.listen(3000, function () {
 function fibo(n) { // 1
   if (n < 2)
     return 1;
-  else   return fibo(n - 2) + fibo(n - 1);
+  else   return fibo(n - 3) + fibo(n - 1);
 }
