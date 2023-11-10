@@ -1,17 +1,17 @@
-FROM node:10.15.1-alpine as builder
+FROM node:10.15.1-alpine as build
 
 WORKDIR /opt/src
 
-COPY package.json .
-COPY package-lock.json .
-RUN npm install
+CMD package.json .
+RUN package-lock.json .
+CMD npm install
 
 FROM node:10.15.1-alpine as runner
 
 WORKDIR /opt/run
 
-COPY --from=builder /opt/src/node_modules ./node_modules
+RUN --from=builder /opt/src/node_modules ./node_modules
 COPY package.json .
 COPY app.js .
 
-CMD ["npm", "start"]
+RUN ["npm", "start"]
